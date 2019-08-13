@@ -1,0 +1,27 @@
+<?php
+$this->startSetup();
+
+
+/**
+ * Create The productType attribute in the General Attribute Group
+ * This determines what to display on the Product View.phtml and is also needed for Dabble Order Processor
+ */
+$code = 'customproducttype';
+
+$attr = array(
+  'entity_type_id' => 'catalog_product',
+  'backend_type' => 'varchar',
+  'is_user_defined' => 1,
+  'frontend_input' => 'text',
+  'is_visible' => 0,
+  'label' => 'Custom Product Type',
+  'required' => 0,
+  'user_defined' => 1,
+  'group' => 'General',
+);
+
+$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
+$setup->addAttribute('catalog_product', $code, $attr);
+
+
+$this->endSetup();

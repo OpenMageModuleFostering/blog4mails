@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Blog4mail_Customproductadmin>
+            <version>0.1.0</version>
+        </Blog4mail_Customproductadmin>
+    </modules>
+    <admin>
+        <routers>
+			<customproductadmin>
+				<use>admin</use>
+				<args>
+					<module>Blog4mail_Customproductadmin</module>
+					<frontName>customproductadmin</frontName>
+				</args>
+			</customproductadmin>
+        </routers>
+    </admin>
+    <adminhtml>
+		<menu>
+			<customproductadmin module="customproductadmin">
+				<title>Customproduct</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="customproductadmin">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>customproductadmin/customproduct</action>
+					</items>
+				</children>
+			</customproductadmin>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Blog4mail_Customproductadmin>
+							<title>Customproduct Module</title>
+							<sort_order>10</sort_order>
+						</Blog4mail_Customproductadmin>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<customproductadmin>
+					<file>customproductadmin.xml</file>
+				</customproductadmin>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+		<blocks>
+			<customproductadmin>
+				<class>Blog4mail_Customproductadmin_Block</class>
+			</customproductadmin>
+		</blocks>
+		<helpers>
+			<customproductadmin>
+				<class>Blog4mail_Customproductadmin_Helper</class>
+			</customproductadmin>
+		</helpers>
+    </global>
+</config>

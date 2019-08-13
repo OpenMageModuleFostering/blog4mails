@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Blog4mail_Customproduct>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Blog4mail_Customproduct>
+    </modules>
+</config> 
