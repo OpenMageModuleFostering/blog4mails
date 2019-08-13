@@ -356,8 +356,10 @@ var image = jQuery('#image').attr('src');
 //var product =jQuery("input[name=product]").val();
 
 var oldprice = jQuery('#oldprice').val();
+var shape = jQuery('#shape').val();
 
-jQuery.post('<?print $baseurl; ?>customproduct/index/image',{'oldprice':oldprice,'image':image,'mainimage':mainimage,'product':product,'textimage':textimage,'left':left,'top':top,'width':width,'height':height,'left_text':left_text,'top_text':top_text,'w_text':w_text,'h_text':h_text},function(data){
+
+jQuery.post('<?print $baseurl; ?>customproduct/index/image',{'shape':shape,'oldprice':oldprice,'image':image,'mainimage':mainimage,'product':product,'textimage':textimage,'left':left,'top':top,'width':width,'height':height,'left_text':left_text,'top_text':top_text,'w_text':w_text,'h_text':h_text},function(data){
     
     var data = JSON.parse(data);
     	
@@ -557,6 +559,14 @@ jQuery.post('<?print $baseurl; ?>customproduct/index/image',{'oldprice':oldprice
         <div class="form-group">
 		<label for="hue-demo">Pick color</label>
 		<input name="color" type="text" id="color" class="demo" data-control="hue" value="#ff6161">
+	</div>
+
+         <div class="form-group">
+		<label for="hue-demo">Pick shape</label>
+		<select name="shape" id="shape">
+                <option value="1">Cylinder(mug)</option>
+		<option value="2">Flat(tshirts)</option>
+                </select>
 	</div>
 
 

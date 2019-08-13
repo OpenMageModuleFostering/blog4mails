@@ -201,6 +201,7 @@ $filename1=$baseurl1.'media/finalimages/'.md5(time().$product).'.jpg';
 
 $mainimage = $_REQUEST['mainimage'];
 
+$shape = $_REQUEST['shape'];
 //convert dragon.gif    -resize 64x64  resize_dragon.gif
 
 
@@ -217,7 +218,9 @@ $bg_image_height=$size_info['geometry']['height'];
 
 system("convert $mainimage -resize $bg_image_width×$bg_image_height $mainimage");
 
-system("media/finalimages/sh1.sh $mainimage $mainimage");
+if($shape==1){
+	system("media/sh/sh1.sh $mainimage $mainimage");
+}
 
 
 $oldprice = trim(str_replace('$',' ',$_REQUEST['oldprice']));
