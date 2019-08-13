@@ -1,4 +1,8 @@
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script> 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/jquery.minicolors/2.1.2/jquery.minicolors.js"></script>  
+
+<link href="//cdn.jsdelivr.net/jquery.minicolors/2.1.2/jquery.minicolors.css" rel="stylesheet" type="text/css">
+
 
 <?php $skin_url = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN); ?>
 <?php $skin_url_uize = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_SKIN).'frontend/default/customproduct/js/Uize.js'; ?>
@@ -320,8 +324,9 @@ var w_text = jQuery('#page-marqueePositionWidthT').val();
 var h_text = jQuery('#page-marqueePositionHeightT').val();
 
     var mytext=jQuery('.mytext').val();
+   var color = jQuery('#color').val();
 
-	jQuery.post('<?print $baseurl; ?>customproduct/index/text',{'mytext':mytext,'width':w_text,'height':h_text,'left':l_text,'top':t_text},function(data){
+	jQuery.post('<?print $baseurl; ?>customproduct/index/text',{'color':color,'mytext':mytext,'width':w_text,'height':h_text,'left':l_text,'top':t_text},function(data){
 	   jQuery('#page_imagePort1-image').attr('src',data);
 	});
 
@@ -541,10 +546,56 @@ jQuery.post('<?print $baseurl; ?>customproduct/index/image',{'oldprice':oldprice
 			
 
 <div id="toaddtext">
-<span><input type="button" name="addtxt" class="addtxt" value="Add text"></span><span><input type="text" name="mytext" id="mytext" class="mytext"/></span>
-</div>
+<span><input type="button" name="addtxt" class="addtxt" value="Add text"></span><span><input placeholder="Enter text here and click add text button" type="text" name="mytext" id="mytext" class="mytext"/></span>
 </div>
 
+        <div class="form-group">
+		<label for="hue-demo">Pick color</label>
+		<input name="color" type="text" id="color" class="demo" data-control="hue" value="#ff6161">
+	</div>
+
+
+</div>
+
+        <style>
+
+.minicolors-input {
+    display: inline-block;
+    height: 30px!important;
+    padding-left: 26px;
+    width: auto;
+}
+		.form-group {
+			margin: 20px 0;
+		}
+		label {
+			color: #888;
+		}
+	</style>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+
+				jQuery('.demo').minicolors({
+					control: jQuery(this).attr('data-control') || 'hue',
+					defaultValue: jQuery(this).attr('data-defaultValue') || '',
+					inline: jQuery(this).attr('data-inline') === 'true',
+					letterCase: jQuery(this).attr('data-letterCase') || 'lowercase',
+					opacity: jQuery(this).attr('data-opacity'),
+					position: jQuery(this).attr('data-position') || 'bottom left',
+					change: function(hex, opacity) {
+						var log;
+						try {
+							log = hex ? hex : 'transparent';
+							if( opacity ) log += ', ' + opacity;
+							console.log(log);
+						} catch(e) {}
+					},
+					theme: 'default'
+				});
+
+})
+</script>
 
 
             <?php echo $this->getChildHtml('other');?>

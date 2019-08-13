@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Blog4mail_Customproduct>
-            <version>1.0.0</version>
+            <version>1.0.2</version>
         </Blog4mail_Customproduct>
     </modules>
     <frontend>

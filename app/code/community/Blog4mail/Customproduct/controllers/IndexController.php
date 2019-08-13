@@ -137,7 +137,11 @@ public function textAction(){
 	//return;
 
 	$mytext = $_REQUEST['mytext'];
+        $color=$_REQUEST['color'];
 
+if($color==''){
+$color = "blue";
+}
 
 	/* Create some objects */
 	$image = new Imagick();
@@ -155,7 +159,7 @@ public function textAction(){
 	$image->paintTransparentImage($transparent, 0, 10);
 
 	/* Black text */
-	$draw->setFillColor('blue');
+	$draw->setFillColor($color);
 
 	/* Font properties */
 	$draw->setFont('Bookman-DemiItalic');
@@ -163,7 +167,7 @@ public function textAction(){
 
 	/* Create text */
 	
-	$image->annotateImage($draw,15,10,0,$mytext);
+	$image->annotateImage($draw,5,10,0,$mytext);
 
 	/* Give image a format */
 
@@ -196,7 +200,24 @@ $filename1=$baseurl1.'media/finalimages/'.md5(time().$product).'.jpg';
 
 $mainimage = $_REQUEST['mainimage'];
 
+//convert dragon.gif    -resize 64x64  resize_dragon.gif
+
+
+
+
+
 $image = $_REQUEST['image'];
+
+
+$check_size = new Imagick($image);
+$size_info = $check_size->identifyImage();
+$bg_image_width=$size_info['geometry']['width']; 
+$bg_image_height=$size_info['geometry']['height'];
+
+system("convert $mainimage -resize $bg_image_width×$bg_image_height $mainimage");
+
+system("media/finalimages/sh1.sh $mainimage $mainimage");
+
 
 $oldprice = trim(str_replace('$',' ',$_REQUEST['oldprice']));
 
