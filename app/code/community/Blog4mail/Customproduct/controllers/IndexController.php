@@ -38,6 +38,7 @@ public function uploadAction(){
     {
 	$pid=$_REQUEST['product_id'];
 	$product = Mage::getModel('catalog/product')->load($pid);
+        //print_r($product); 
 	$html=$this->getProductOptionsHtml($product);
 	print $html; 
     }
@@ -264,7 +265,7 @@ if ($foundimage !== false && $foundtextimage !== false) {
 
 $mug = new Imagick($image);
 
-if ($foundimage === false) {
+if ($foundimage === false){
 $im = new Imagick($mainimage);
 $im->scaleImage($w,$h);
 $im->setImageFormat('jpeg');
@@ -323,6 +324,7 @@ if($foundtextimage === false) {
 
 		$id=$this->_updateShopsProduct($data,$designedProduct='true',$magentoid);
 		$opthtml=$this->getProductOptionsHtml($product);
+                $newid=$product_id;
 	} else {
 		//print 'create';
 	        //return;
@@ -341,7 +343,9 @@ if($foundtextimage === false) {
 		$data['image']=$filename;
 		$data['persp']=$persp;
 		$id = $this->createShopsProduct($data,$designedProduct='true');
+                $newid=$id;
 		$opthtml=$this->getProductOptionsHtml($product);
+              
 	}
 
 
@@ -349,7 +353,7 @@ if($foundtextimage === false) {
 $ar=array();
 $ar['filename']=$filename1;
 $ar['opthtml']=$opthtml;
-$ar['product_id']=$id;
+$ar['product_id']=$newid;
 $ar['price']=$data['price'];
 print json_encode($ar);
 }

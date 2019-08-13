@@ -387,6 +387,10 @@ jQuery.post('<?print $baseurl; ?>customproduct/index/image',{'oldprice':oldprice
     var addcart = jQuery("#product_addtocart_form").attr('action');
     var addcart = addcart.split('product/');
     var addcart_url = addcart[0]+'product/'+pid+'/'
+    var form_key = addcart[1].split('form_key');
+    if(form_key[1]){
+      addcart_url = addcart_url + 'form_key' + form_key[1];
+    }
     
 
     var wish = jQuery(".link-wishlist").attr('href');
@@ -508,6 +512,7 @@ jQuery.post('<?print $baseurl; ?>customproduct/index/image',{'oldprice':oldprice
             <?php echo $this->getChildHtml('alert_urls') ?>
             <?php echo $this->getChildHtml('product_type_data') ?>
             <?php echo $this->getTierPriceHtml() ?>
+            <?php echo $this->getPriceHtml($_product) ?>
             <?php echo $this->getChildHtml('extrahint') ?>
 
             <?php if (!$this->hasOptions()):?>
