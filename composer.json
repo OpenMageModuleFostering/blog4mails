@@ -1,7 +1,7 @@
 {
-    "name": "OpenMageModuleFostering\/Blog4mails",
+    "name": "openmage-module-fostering\/blog4mails",
     "type": "magento-module",
-    "license": "Open-Source",
+    "license": "OSL-3.0",
     "homepage": "",
     "description": "Product design tools for online custom product development",
     "authors": [
